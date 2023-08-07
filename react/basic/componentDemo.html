@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script type="text/babel">
+        /* 
+        组件分为函数式组件和类式组件
+        */
+        // 函数式
+        // function HelloWorld(){
+        //     return (<div><h1>Hello World</h1></div>)
+        // }
+        // ReactDOM.render(<HelloWorld/>,document.querySelector('#app'))
+        
+        // 类式
+        // class HelloWorld extends React.Component{
+        //     render(){
+        //         return(<div><h1>Hello Class Component</h1></div>)
+        //     }
+        // }
+        // ReactDOM.render(<HelloWorld/>,document.querySelector('#app'))
+
+        // props
+        // function Com1(props){
+        //     return (<div>{props.name}</div>)
+        // }
+        // ReactDOM.render(<Com1 name="thomas" />,document.querySelector('#app'))
+
+        // 复合组件
+        function Name(props){
+            return(<div>{props.name}</div>)
+        }
+
+        function Url(props){
+            return (<div>{props.url}</div>)
+        }
+
+        function NickName(props){
+            return (<div>{props.nickname}</div>)
+        }
+
+        function App(){
+            return (
+                <div>
+                    <Name name="thomas"/>
+                    <Url url="www.baidu.com"/>
+                    <NickName nickname="xxxx"/>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App/>,document.querySelector('#app'))
+    </script>
+    
+</body>
+</html>

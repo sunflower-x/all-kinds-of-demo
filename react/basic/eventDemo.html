@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      // 简单示例
+      // function Com1(){
+      //     function handleClick(){
+      //         alert('被点击了')
+      //     }
+      //     return(
+      //         <div><button onClick={handleClick}>点击</button></div>
+      //     )
+      // }
+      // ReactDOM.render(<Com1/>,document.querySelector('#app'))
+
+      //   切换状态
+      //   class Toggle extends React.Component {
+      //     constructor(props) {
+      //       super(props);
+      //       this.state = { isToggleOn: true };
+      //       // 这边绑定是必要的，这样 `this` 才能在回调函数中使用
+      //       this.handleClick = this.handleClick.bind(this);
+      //     }
+      //     handleClick() {
+      //       this.setState((prevState) => ({
+      //         isToggleOn: !this.state.isToggleOn,
+      //       }));
+      //     }
+
+      //     render() {
+      //       return (
+      //         <div>
+      //           <button onClick={this.handleClick}>
+      //             {this.state.isToggleOn ? "yes" : "no"}
+      //           </button>
+      //         </div>
+      //       );
+      //     }
+      //   }
+
+      //   ReactDOM.render(<Toggle />, document.querySelector("#app"));
+
+      // 传递参数
+      class Com1 extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { name: "hello world" };
+          this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick(params) {
+          this.setState((prevState) => ({ name: params }));
+        }
+        render() {
+          return (
+            <div>
+              <button onClick={()=>{this.handleClick("thomas")}}>点击</button>
+              <span>{this.state.name}</span>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Com1 />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>
