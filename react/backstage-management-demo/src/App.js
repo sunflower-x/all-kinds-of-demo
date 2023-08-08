@@ -1,15 +1,28 @@
-import {  Link, Outlet } from "react-router-dom";
-import Login from "./pages/login/index";
-import Home from "./pages/home/index"
-import About from "./pages/about/index"
-function App() {
+import MyLayout from './layout/index'
+import { useRoutes,useLocation,useNavigate } from 'react-router-dom';
+import routes from './router';
+import { useEffect } from 'react';
+const App = () => {
+  const location=useLocation()
+  const outlet =useRoutes(routes)
+  const navigate=useNavigate()
+  useEffect(()=>{
+    console.log("执行了");
+    console.log(location.pathname,11111);
+    if(location.pathname!='/login'){
+      let token=localStorage.getItem('token')
+      if(!token){
+        navigate('/login')
+      }
+      // console.log(token);
+    }
+  },[location])
   return (
     <>
-      {/* <Login /> */}
-      <Link to={'/home'}>Home</Link>
-      <Link to={'/about'}>About</Link>
-      <Outlet></Outlet>
+    {/* <Outlet/> */}
+    {outlet}
+    {/* <MyLayout/> */}
     </>
   );
-}
+};
 export default App;

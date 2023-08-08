@@ -1,7 +1,11 @@
 import { Button, Checkbox, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigator=useNavigate()
   const onFinish = (values) => {
+    localStorage.setItem('token','token')
+    navigator('/layout')
     console.log("Success:", values);
   };
 

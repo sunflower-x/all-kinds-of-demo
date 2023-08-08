@@ -1,17 +1,31 @@
 import App from "../App";
 import Home from "../pages/home/index";
 import About from "../pages/about/index";
-import { Routes, Route } from "react-router-dom";
+import MyLayout from "../layout/index";
+import Login from "../pages/login/index";
 
-const baseRouter = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-      </Route>
-    </Routes>
-  );
-};
+import { Navigate } from "react-router-dom";
 
-export default baseRouter;
+const routes = [
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/layout",
+    element: <MyLayout />,
+    children: [
+      {
+        path: "/layout/home",
+        element: <Home />,
+      },
+      {
+        path: "/layout/about",
+        element: <About />,
+      },
+    ],
+  },
+  
+];
+
+export default routes;
