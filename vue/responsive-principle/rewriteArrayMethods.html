@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function render(){
+        console.log('render');
+      }
+      const methods=['push','pop','shift','unshift','sort','reverse','splice',]
+      let originPrototype=Array.prototype
+      let proto=Object.create(originPrototype)
+      methods.forEach((item)=>{
+        proto[item] = function(){
+          originPrototype[item].call(this,...arguments)
+          render()
+        }
+      })
+
+      function obsever(data){
+        if(Array.isArray(data)){
+          data.__proto__=proto
+          return;
+        }
+        if(typeof data=='obj'){
+          for(let key in data){
+            defineReactive(data,key,data[key])
+          }
+        }
+      }
+
+      function defineReactive(data,key,val){
+        obsever(val)
+        Object.defineProperties(data,key,{
+          get:function(){
+            console.log('get');
+          },
+          set:function(){
+            console.log('set');
+          }
+        })
+      }
+
+      let data=[1,2,3,4,5,6]
+      obsever(data)
+      data.push(1)
+    </script>
+  </body>
+</html>

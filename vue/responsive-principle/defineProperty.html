@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let data={
+        name:'thomas',
+        location:{
+            x:1,
+            y:1,
+        }
+      }
+      observe(data)
+      function observe(obj){
+        if(!obj||typeof obj!='object'){
+            return
+        }
+        Object.keys(obj).forEach((key)=>{
+            defineReactive(obj,key,obj[key]);
+        })
+
+      }
+      function defineReactive(obj,key,val){
+        observe(val);
+        Object.defineProperty(obj,key,{
+            get:function(){
+                console.log('get');
+            },
+            set:function(newVal){
+                console.log('set');
+            }
+        });
+      }
+      data.location={
+        x:100,
+        y:100,
+      }
+      data.name
+    </script>
+  </body>
+</html>
