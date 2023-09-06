@@ -1,12 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const router=require('express').Router()
+const userRoute=require('./user')
 
-router.get('/', (req, res) => {
-  res.render('index');
-});
+router.use('/user',userRoute)
 
-router.get('/contact', (req, res) => {
-  res.render('contact');
-});
-
-module.exports = router;
+module.exports=router
